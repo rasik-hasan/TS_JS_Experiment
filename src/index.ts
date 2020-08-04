@@ -1,35 +1,29 @@
-//Asynchronous calls with callback
-//Use Callback functions to do something after an aynchronous job
-
-const first = (callback: any) => {
+const effectivePromise = new Promise((resolve) => {
   console.log("first");
-  setTimeout(() => {
-    callback();
-  }, 5000);
-};
 
-const second = (callback: any) => {
-  console.log("second");
   setTimeout(() => {
-    callback();
+    resolve("thirds");
   }, 2000);
-};
 
-const third = (callback: any) => {
-  console.log("third");
+  console.log("finish");
+});
+
+effectivePromise.then((result) => {
+  console.log(`then: ${result}`);
+  console.log(`after calling`);
+});
+
+const callbackA = (callback) => {
+  console.log("first");
+
   setTimeout(() => {
-    callback();
-  }, 4000);
+    callback("third");
+  }, 2000);
+
+  console.log("finish");
 };
 
-//calling
-
-first(() => {
-  console.log("first's callback");
-  second(() => {
-    console.log("second's callback");
-    third(() => {
-      console.log("final and finish");
-    });
-  });
+callbackA((sentString: string) => {
+  console.log(`then: ${sentString}`);
+  console.log(`after calling`);
 });
