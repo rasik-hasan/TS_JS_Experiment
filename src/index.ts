@@ -1,29 +1,30 @@
-//Asynchronous calls
+//Asynchronous calls with callback
+//Use Callback functions to do something after an aynchronous job
 
-const first = () => {
+const first = (callback: any) => {
   setTimeout(() => {
-    console.log("first");
+    callback();
   }, 5000);
 };
 
-const second = () => {
+const second = (callback: any) => {
   setTimeout(() => {
-    console.log("second");
+    callback();
   }, 2000);
 };
 
-const third = () => {
+const third = (callback: any) => {
   setTimeout(() => {
-    console.log("third");
+    callback("Fuck you");
   }, 4000);
 };
 
 //calling
-first();
+first(() => console.log("first Callback"));
 console.log("first is called");
 
-second();
+second(() => console.log("second callback"));
 console.log("second is called");
 
-third();
+third((sentence: string) => console.log(sentence));
 console.log("third is called");

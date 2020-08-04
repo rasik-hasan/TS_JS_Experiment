@@ -1,24 +1,25 @@
 "use strict";
-//Asynchronous calls
-const first = () => {
+//Asynchronous calls with callback
+//Use Callback functions to do something after an aynchronous job
+const first = (callback) => {
     setTimeout(() => {
-        console.log("first");
+        callback();
     }, 5000);
 };
-const second = () => {
+const second = (callback) => {
     setTimeout(() => {
-        console.log("second");
+        callback();
     }, 2000);
 };
-const third = () => {
+const third = (callback) => {
     setTimeout(() => {
-        console.log("third");
+        callback("Fuck you");
     }, 4000);
 };
 //calling
-first();
+first(() => console.log("first Callback"));
 console.log("first is called");
-second();
+second(() => console.log("second callback"));
 console.log("second is called");
-third();
+third((sentence) => console.log(sentence));
 console.log("third is called");
