@@ -1,13 +1,19 @@
 "use strict";
-//console.log("hello world");
+//Asynchronous calls
 const first = () => {
-    console.log("first");
+    setTimeout(() => {
+        console.log("first");
+    }, 5000);
 };
 const second = () => {
-    console.log("second");
+    setTimeout(() => {
+        console.log("second");
+    }, 2000);
 };
 const third = () => {
-    console.log("third");
+    setTimeout(() => {
+        console.log("third");
+    }, 4000);
 };
 //calling
 first();
