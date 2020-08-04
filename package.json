@@ -1,0 +1,17 @@
+{
+  "name": "ts-experiment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "npx concurrently -k -n COMPILER,NODEMON -c yellow,blue  \"tsc -w\" \"nodemon -w dist -q dist/index.js\" "
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
+    "typescript": "^3.9.7"
+  }
+}
