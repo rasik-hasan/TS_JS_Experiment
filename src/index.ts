@@ -2,29 +2,34 @@
 //Use Callback functions to do something after an aynchronous job
 
 const first = (callback: any) => {
+  console.log("first");
   setTimeout(() => {
     callback();
   }, 5000);
 };
 
 const second = (callback: any) => {
+  console.log("second");
   setTimeout(() => {
     callback();
   }, 2000);
 };
 
 const third = (callback: any) => {
+  console.log("third");
   setTimeout(() => {
-    callback("Fuck you");
+    callback();
   }, 4000);
 };
 
 //calling
-first(() => console.log("first Callback"));
-console.log("first is called");
 
-second(() => console.log("second callback"));
-console.log("second is called");
-
-third((sentence: string) => console.log(sentence));
-console.log("third is called");
+first(() => {
+  console.log("first's callback");
+  second(() => {
+    console.log("second's callback");
+    third(() => {
+      console.log("final and finish");
+    });
+  });
+});
