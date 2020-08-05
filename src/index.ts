@@ -23,14 +23,23 @@ const logHi = () => {
 
 const prom = new Promise((resolve) => {
   setTimeout(() => {
-    console.log("prom wait 5sec");
-    resolve();
+    console.log("prom wait 5s");
+    resolve(5); // without resolve its going to wait here forever
   }, 5000);
 });
 
-prom.then(() => {
-  delay(2000).then(logHi);
-});
+// prom.then(() => {
+//   delay(2000).then(logHi);
+// });
+
+prom
+  .then((result) => {
+    console.log(result);
+    return result + 1;
+  })
+  .then((result) => {
+    console.log(result);
+  });
 
 //guessing output:
 //prom wait 5 sec
