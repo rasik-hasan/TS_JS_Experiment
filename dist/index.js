@@ -30,6 +30,18 @@ const addAsync = async (x) => {
     const c = await doubleAfter2Seconds(30);
     return x + a + b + c;
 };
-addAsync(10).then((result) => {
+// addAsync(10).then((result) => {
+//   console.log(result);
+// });
+//async within a promise
+const asyncWpromise = (x) => {
+    return new Promise(async (resolve) => {
+        console.log("before await, should wait 2s");
+        await doubleAfter2Seconds(x);
+        console.log("after await");
+        resolve("done!");
+    });
+};
+asyncWpromise(10).then((result) => {
     console.log(result);
 });
