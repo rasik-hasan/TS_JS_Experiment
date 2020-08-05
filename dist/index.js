@@ -1,23 +1,25 @@
 "use strict";
-const effectivePromise = new Promise((resolve) => {
-    console.log("first");
+//testing another thing
+const first = () => new Promise((resolve) => {
     setTimeout(() => {
-        resolve("thirds");
-    }, 2000);
-    console.log("finish");
+        console.log("first");
+    }, 5000);
+    resolve();
 });
-effectivePromise.then((result) => {
-    console.log(`then: ${result}`);
-    console.log(`after calling`);
-});
-const callbackA = (callback) => {
-    console.log("first");
+const second = () => new Promise((resolve) => {
     setTimeout(() => {
-        callback("third");
+        console.log("second");
     }, 2000);
-    console.log("finish");
-};
-callbackA((sentString) => {
-    console.log(`then: ${sentString}`);
-    console.log(`after calling`);
+    resolve();
 });
+const third = () => new Promise((resolve) => {
+    setTimeout(() => {
+        console.log("third");
+    }, 4000);
+    resolve();
+});
+//calling
+first().then(() => {
+    second();
+});
+//no special effect.

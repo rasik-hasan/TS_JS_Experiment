@@ -1,29 +1,35 @@
-const effectivePromise = new Promise((resolve) => {
-  console.log("first");
+//testing another thing
 
-  setTimeout(() => {
-    resolve("thirds");
-  }, 2000);
+const first = () =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("first");
+    }, 5000);
 
-  console.log("finish");
+    resolve();
+  });
+
+const second = () =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("second");
+    }, 2000);
+
+    resolve();
+  });
+
+const third = () =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("third");
+    }, 4000);
+
+    resolve();
+  });
+
+//calling
+first().then(() => {
+  second();
 });
 
-effectivePromise.then((result) => {
-  console.log(`then: ${result}`);
-  console.log(`after calling`);
-});
-
-const callbackA = (callback) => {
-  console.log("first");
-
-  setTimeout(() => {
-    callback("third");
-  }, 2000);
-
-  console.log("finish");
-};
-
-callbackA((sentString: string) => {
-  console.log(`then: ${sentString}`);
-  console.log(`after calling`);
-});
+//no special effect.
