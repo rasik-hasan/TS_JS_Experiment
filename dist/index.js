@@ -1,25 +1,20 @@
 "use strict";
-//testing another thing
-const first = () => new Promise((resolve) => {
+// now promise found.
+// settimeout itself cause another thread I think.
+//need to resolve within settimeout or else it won't block code exec.
+const delay = (t) => {
+    return new Promise((resolve) => {
+        console.log("firsts");
+        setTimeout(() => {
+            console.log("waiting 2sec");
+            resolve();
+        }, t);
+    });
+};
+const logHi = () => {
     setTimeout(() => {
-        console.log("first");
-    }, 5000);
-    resolve();
-});
-const second = () => new Promise((resolve) => {
-    setTimeout(() => {
-        console.log("second");
-    }, 2000);
-    resolve();
-});
-const third = () => new Promise((resolve) => {
-    setTimeout(() => {
-        console.log("third");
-    }, 4000);
-    resolve();
-});
-//calling
-first().then(() => {
-    second();
-});
-//no special effect.
+        console.log("loghi");
+    }, 1000);
+    console.log("hi");
+};
+delay(2000).then(logHi);

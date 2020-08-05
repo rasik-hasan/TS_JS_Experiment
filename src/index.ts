@@ -1,35 +1,22 @@
-//testing another thing
+// now promise found.
+// settimeout itself cause another thread I think.
+//need to resolve within settimeout or else it won't block code exec.
 
-const first = () =>
-  new Promise((resolve) => {
+const delay = (t: number) => {
+  return new Promise((resolve) => {
+    console.log("firsts");
     setTimeout(() => {
-      console.log("first");
-    }, 5000);
-
-    resolve();
+      console.log("waiting 2sec");
+      resolve();
+    }, t);
   });
+};
 
-const second = () =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      console.log("second");
-    }, 2000);
+const logHi = () => {
+  setTimeout(() => {
+    console.log("loghi");
+  }, 1000);
+  console.log("hi");
+};
 
-    resolve();
-  });
-
-const third = () =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      console.log("third");
-    }, 4000);
-
-    resolve();
-  });
-
-//calling
-first().then(() => {
-  second();
-});
-
-//no special effect.
+delay(2000).then(logHi);
