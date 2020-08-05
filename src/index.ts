@@ -19,4 +19,22 @@ const logHi = () => {
   console.log("hi");
 };
 
-delay(2000).then(logHi);
+//delay(2000).then(logHi);
+
+const prom = new Promise((resolve) => {
+  setTimeout(() => {
+    console.log("prom wait 5sec");
+    resolve();
+  }, 5000);
+});
+
+prom.then(() => {
+  delay(2000).then(logHi);
+});
+
+//guessing output:
+//prom wait 5 sec
+//firsts
+//waiting 2 secs
+//hi
+//loghi
